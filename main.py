@@ -4,6 +4,7 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
+
 class InferenceInput(BaseModel):
     age: int
     education: str
@@ -11,10 +12,12 @@ class InferenceInput(BaseModel):
 
 @app.get("/")
 
+
 def root():
     return {"message": "Hello from the API!"}
 
 @app.post("/predict")
+
 
 def predict(input_data: InferenceInput):
     # Dummy logic for inference
