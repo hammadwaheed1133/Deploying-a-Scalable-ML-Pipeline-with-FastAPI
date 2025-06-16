@@ -84,9 +84,10 @@ izer
         except AttributeError:
             pass
 
-        
-    X = np.concatenate([X_continuous, X_categorical], axis=1)
-    return X, y, encoder, lb
+        X = np.concatenate([X_continuous, X_categorical], axis=1)
+
+        return X, y, encoder, lb
+
 
 def apply_label(inference):
     """ Convert the binary label in a single inference sample into string
