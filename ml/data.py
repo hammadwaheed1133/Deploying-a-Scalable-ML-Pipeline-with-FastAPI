@@ -1,11 +1,16 @@
 import numpy as np
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
 
+
 def process_data(
-    X, categorical_features=[], label=None, training=True, encoder=None, lb=None
-        \
-        
+    X,
+    categorical_features=None,
+    label=None,
+    training=True,
+    encoder=None,
+    lb=None
 ):
+
     """ Process the data used in the machine learning pipeline.
 
     Processes the data using one hot encoding for the categorical features and
@@ -79,6 +84,7 @@ izer
         except AttributeError:
             pass
 
+        
     X = np.concatenate([X_continuous, X_categorical], axis=1)
     return X, y, encoder, lb
 
