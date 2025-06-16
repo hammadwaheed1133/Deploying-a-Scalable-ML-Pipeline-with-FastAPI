@@ -5,7 +5,7 @@ from ml.model import train_model, compute_model_metrics, inference
 from ml.data import process_data
 import pandas as pd
 
-# Load a small sample dataframe for testing
+
 @pytest.fixture
 def sample_data():
     data = pd.DataFrame({
@@ -27,20 +27,33 @@ def sample_data():
     })
     return data
 
+
 def test_train_model(sample_data):
-    cat_features = ["workclass", "education", "marital-status", "occupation",
-                    "relationship", "race", "sex", "native-country"]
-    X, y, encoder, lb = process_data(sample_data, categorical_features=cat_features, label="salary", training=True)
+    cat_features = [
+        "workclass", "education", "marital-status", "occupation",
+        "relationship", "race", "sex", "native-country"
+    ]
+    X, y, encoder, lb = process_data(
+        sample_data, categorical_features=cat_features,
+        label="salary", training=True
+    )
     model = train_model(X, y)
     assert isinstance(model, LogisticRegression)
 
+
 def test_inference_output_type(sample_data):
-    cat_features = ["workclass", "education", "marital-status", "occupation",
-                    "relationship", "race", "sex", "native-country"]
-    X, y, encoder, lb = process_data(sample_data, categorical_features=cat_features, label="salary", training=True)
+    cat_features = [
+        "workclass", "education", "marital-status", "occupation",
+        "relationship", "race", "sex", "native-country"
+    ]
+    X, y, encoder, lb = process_data(
+        sample_data, categorical_features=cat_features,
+        label="salary", training=True
+    )
     model = train_model(X, y)
     preds = inference(model, X)
     assert isinstance(preds, np.ndarray)
+
 
 def test_compute_model_metrics_values():
     y_true = np.array([1, 0, 1, 1])

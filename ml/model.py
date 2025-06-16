@@ -15,7 +15,7 @@ def train_model(X_train, y_train):
 
 def compute_model_metrics(y, preds):
     """
-    Validates the trained machine learning model using precision, recall, and F1.
+    Validates the trained model using precision, recall, and F1 score.
     """
     fbeta = fbeta_score(y, preds, beta=1, zero_division=1)
     precision = precision_score(y, preds, zero_division=1)
@@ -25,7 +25,7 @@ def compute_model_metrics(y, preds):
 
 def inference(model, X):
     """
-    Run model inferences and return the predictions.
+    Run model inferences and return predictions.
     """
     return model.predict(X)
 
@@ -40,17 +40,25 @@ def save_model(model, path):
 
 def load_model(path):
     """
-    Loads pickle file from `path` and returns it.
+    Loads a model from a pickle file.
     """
     with open(path, "rb") as f:
         return pickle.load(f)
 
 
 def performance_on_categorical_slice(
-    data, column_name, slice_value, categorical_features, label, encoder, lb, model
+    data,
+    column_name,
+    slice_value,
+    categorical_features,
+    label,
+    encoder,
+    lb,
+    model
 ):
     """
-    Computes the model metrics on a slice of the data specified by a column name and value.
+    Computes the model metrics on a slice of the data specified by column name
+    and value.
     """
     data_slice = data[data[column_name] == slice_value]
 
